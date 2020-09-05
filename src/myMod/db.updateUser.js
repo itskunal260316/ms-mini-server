@@ -25,4 +25,24 @@ let updateUserData = async (input) => {
 }
 
 
-module.exports = { updateUserData };
+
+let updatePassword = async (input) => {
+
+    try {
+
+        let connection = mysql.createConnection(config.user_config);
+        await connection.connectAsync();
+
+        console.log(input.username);
+        let sql = "update user_details set pass=? WHERE username=?"
+        let result = connection.queryAsync(sql, [input.password, input.username]);
+        return result;
+        connection.endAsync();
+
+    } catch (err) {
+        console.log("Error inside function=>" + err);
+    }
+};
+
+
+module.exports = { updateUserData, updatePassword };

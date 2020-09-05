@@ -149,7 +149,7 @@ app.post("/saveMsg", async (req, res) => {
     try {
 
         const input = req.body;
-        let resp = await userMsg.saveMsg(input)
+        let resp = await userMsg.saveMsg(input);
         res.send(resp);
 
     } catch (err) {
@@ -159,10 +159,21 @@ app.post("/saveMsg", async (req, res) => {
 });
 
 
+app.post("/changePassword", async (req, res) => {
+
+    try {
+        const input = req.body;
+        console.log(input);
+        let resp = await updateUser.updatePassword(input);
+        res.send(resp);
+
+    } catch (err) {
+
+        console.log("Error in main=>" + err);
+    }
 
 
-
-
+});
 
 
 
